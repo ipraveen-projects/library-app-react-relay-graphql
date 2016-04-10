@@ -1,4 +1,4 @@
-#react-flux-starter-kit
+#private repo
 
 Library application with React, Relay and GraphQl
 
