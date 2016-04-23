@@ -5,3 +5,4 @@
 > DO NOT DOWNLOAD OR FORK!
 
 Library application with React, Relay and GraphQl
+test
