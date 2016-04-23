@@ -8,36 +8,47 @@ import {
 
 import {
     globalIdField,
+    toGlobalId,
     connectionDefinitions,
     connectionArgs,
     connectionFromArray
 } from "graphql-relay";
 
-import {getTodos} from "./database";
+import {getBooks} from "./database";
 
-let todoType = new GraphQLObjectType({
-    name: "Todo",
+let bookType = new GraphQLObjectType({
+    name: "Book",
     fields: () => ({
         id: {
             type: new GraphQLNonNull(GraphQLID),
-            resolve: (obj) => obj.id
+            resolve: (obj) =>  toGlobalId("Book",obj.id) + ":" + obj.id
         },
         title: {
+            type: GraphQLString
+        },
+        pubDate: {
             type: GraphQLString
         }
     })
 });
 
-const todoConnection = connectionDefinitions({name: "Todo", nodeType: todoType});
+const bookConnection = connectionDefinitions({name: "Book", nodeType: bookType});
 
-const storeType = new GraphQLObjectType({
-    name: "Store",
+const libraryType = new GraphQLObjectType({
+    name: "Library",
     fields: () => ({
-        id : globalIdField("Store"),
-        "todos": ({
-            type: todoConnection.connectionType,
-            args: connectionArgs,
-            resolve: (_, args) => connectionFromArray(getTodos(), args)
+        id : globalIdField("Library"),
+        "books": ({
+            type: bookConnection.connectionType,
+            args: {
+                ...connectionArgs,
+                query: {type: GraphQLString},
+                pubStartDate: {type: GraphQLString},
+                pubEndDate: {type: GraphQLString}
+            },
+            resolve: (_, args) => {
+                return connectionFromArray(getBooks(args), args);
+            }
         })
     })
 });
@@ -45,8 +56,8 @@ const storeType = new GraphQLObjectType({
 const query = new GraphQLObjectType({
     name: "Query",
     fields: () => ({
-        store: {
-            type: storeType,
+        library: {
+            type: libraryType,
             resolve: () => ({})
         }
     })

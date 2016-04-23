@@ -1,5 +1,7 @@
+var webpack = require('webpack');
+
 module.exports = {
-    entry: "./app/js/app.js",
+    entry: {app: ["./app/js/app.js"]} ,
     output: {
         path: __dirname,
         filename: "dist/bundle.js",
@@ -20,7 +22,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel",
                 query: {
-                    presets: ['es2015', 'react','stage-0'],
+                    presets: ["es2015", "react","stage-0"],
                     plugins: [__dirname + "/plugins/babelRelayPlugin"]
                 }
             }, {
@@ -28,5 +30,8 @@ module.exports = {
                 loaders: ["style", "css", "sass"]
             }
         ]
-    }
+    },
+    plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };

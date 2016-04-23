@@ -13,12 +13,12 @@
           "description": null,
           "fields": [
             {
-              "name": "store",
+              "name": "library",
               "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Store",
+                "name": "Library",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -32,7 +32,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Store",
+          "name": "Library",
           "description": null,
           "fields": [
             {
@@ -52,7 +52,7 @@
               "deprecationReason": null
             },
             {
-              "name": "todos",
+              "name": "books",
               "description": null,
               "args": [
                 {
@@ -94,11 +94,41 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "query",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "pubStartDate",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "pubEndDate",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "TodoConnection",
+                "name": "BookConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -142,7 +172,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "TodoConnection",
+          "name": "BookConnection",
           "description": "A connection to a list of items.",
           "fields": [
             {
@@ -170,7 +200,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "TodoEdge",
+                  "name": "BookEdge",
                   "ofType": null
                 }
               },
@@ -262,7 +292,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "TodoEdge",
+          "name": "BookEdge",
           "description": "An edge in a connection.",
           "fields": [
             {
@@ -271,7 +301,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Todo",
+                "name": "Book",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -301,7 +331,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Todo",
+          "name": "Book",
           "description": null,
           "fields": [
             {
@@ -322,6 +352,18 @@
             },
             {
               "name": "title",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pubDate",
               "description": null,
               "args": [],
               "type": {

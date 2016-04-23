@@ -6,6 +6,7 @@
      "parser": "babel-eslint",
     "rules": {
         "strict": 0,
+        "no-unused-vars": 1,
         "eqeqeq": [2, "smart"],
         "indent": ["error", 4, {"SwitchCase": 1}],
         "no-var": 2,
