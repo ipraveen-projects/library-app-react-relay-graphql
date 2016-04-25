@@ -21,6 +21,8 @@
     "express-graphql": "0.4.9",
     "graphql": "0.4.17",
     "graphql-relay": "0.3.6",
+    "history": "^2.1.0",
+    "jquery": "^2.2.3",
     "react": "0.14.7",
     "react-dom": "0.14.7",
     "react-relay": "0.7.3",

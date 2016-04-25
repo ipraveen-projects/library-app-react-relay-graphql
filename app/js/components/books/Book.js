@@ -3,8 +3,12 @@ import Relay from "react-relay";
 
 class Book extends React.Component {
     render() {
+        const {index, book} = this.props;
         return (
-            <li>{this.props.book.title}</li>
+            <tr>
+                <th scope="row">{index}</th>
+                <td>{book.title}</td>
+            </tr>
         );
 
     }

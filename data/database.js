@@ -1,58 +1,43 @@
-let books = [];
-books.push({
-    "id": "1",
-    "title": "Five point some one",
-    "pubDate": "2015/01/25"
-},{
-    "id": "2",
-    "title": "Food in five minute",
-    "pubDate": "2015/05/05"
-},{
-    "id": "3",
-    "title": "Fame for five minute",
-    "pubDate": "2016/02/05"
-});
+let books = [
+    {
+        "id": "1",
+        "title": "Harry Potter and the Philosopher's Stone",
+        "isAvailable": true
+    }, {
+        "id": "2",
+        "title": "Harry Potter and the Chamber of Secrets",
+        "isAvailable": false
+    }, {
+        "id": "3",
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "isAvailable": true
+    }
+];
 
+let user = {
+    id: "123",
+    userName: "john_dae",
+    name: "John Dae"
+};
 
-for (let i = books.length + 1; i <= 10; i++) {
-
-    let book = {
-        "id": `${i}`,
-        "title": `Book ${i}`
-    };
-
-    books.push(book);
-
+export function getUser(userName) {
+    if (userName === "john_dae") {
+        return user;
+    }
+    return null;
 }
 
 export function getBooks(args) {
-    let _books = books;
 
-    if(args && (args.pubStartDate || args.pubEndDate)){
-
-        const _pubStartDate = new Date(args.pubStartDate);
-        const _pubEndDate = new Date(args.pubEndDate);
-
-        _books = _books.filter((book) =>{
-            const _pubDate = new Date(book.pubDate);
-            if(_pubDate.getTime() <=_pubEndDate.getTime() && _pubDate.getTime() >=_pubStartDate.getTime()){
+    if (args && args.query) {
+        return books.filter((book) => {
+            if (book.title.search(new RegExp(args.query, "i")) >= 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         });
-
+    }else{
+        return books;
     }
-
-    if(args && args.query){
-        _books = _books.filter((book) =>{
-            if(book.title.search(new RegExp(args.query, "i")) >= 0){
-                return true;
-            }else{
-                return false;
-            }
-        });
-    }
-
-    return _books;
 }

@@ -1,7 +1,7 @@
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
-    entry: {app: ["./app/js/app.js"]} ,
+    entry: {app: ["./app/js/main.js"]} ,
     output: {
         path: __dirname,
         filename: "dist/bundle.js",
@@ -28,7 +28,9 @@ module.exports = {
             }, {
                 test: /\.scss$/,
                 loaders: ["style", "css", "sass"]
-            }
+            },
+            { test: /\.(woff2?|svg)$/, loader: "url?limit=10000" },
+            { test: /\.(ttf|eot)$/, loader: "file" }
         ]
     },
     plugins: [
